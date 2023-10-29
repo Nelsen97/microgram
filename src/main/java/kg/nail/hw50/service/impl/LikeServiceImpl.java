@@ -1,4 +1,4 @@
-package kg.nail.hw50.service;
+package kg.nail.hw50.service.impl;
 
 import kg.nail.hw50.dto.LikeDTO;
 import kg.nail.hw50.entity.Like;
@@ -11,7 +11,7 @@ import kg.nail.hw50.exception.UserNotFoundException;
 import kg.nail.hw50.repository.LikeRepository;
 import kg.nail.hw50.repository.PostRepository;
 import kg.nail.hw50.repository.UserRepository;
-import kg.nail.hw50.service.impl.LikeService;
+import kg.nail.hw50.service.LikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

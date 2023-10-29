@@ -2,7 +2,7 @@ package kg.nail.hw50.controller;
 
 import kg.nail.hw50.dto.CommentDTO;
 import kg.nail.hw50.exception.CommentNotFoundException;
-import kg.nail.hw50.service.impl.CommentService;
+import kg.nail.hw50.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

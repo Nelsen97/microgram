@@ -1,4 +1,4 @@
-package kg.nail.hw50.service.impl;
+package kg.nail.hw50.service;
 
 import kg.nail.hw50.dto.PostDTO;
 

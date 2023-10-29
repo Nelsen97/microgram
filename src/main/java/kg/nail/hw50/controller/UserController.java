@@ -1,7 +1,7 @@
 package kg.nail.hw50.controller;
 
 import kg.nail.hw50.exception.UserNotFoundException;
-import kg.nail.hw50.service.impl.UserService;
+import kg.nail.hw50.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

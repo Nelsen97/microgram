@@ -10,6 +10,7 @@ import kg.nail.hw50.repository.PostRepository;
 import kg.nail.hw50.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class InitDatabase implements CommandLineRunner {
     private final LikeRepository likeRepository;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final PasswordEncoder encoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -44,16 +46,19 @@ public class InitDatabase implements CommandLineRunner {
         users.add(User.builder()
                 .username("Nail")
                 .email("nail@gmail.com")
+                .password(encoder.encode("123"))
                 .posts(postList)
                 .build());
         users.add(User.builder()
                 .username("Alfit")
                 .email("alfit@gmail.com")
+                .password(encoder.encode("123"))
                 .posts(postList)
                 .build());
         users.add(User.builder()
                 .username("Tima")
                 .email("tima@gmail.com")
+                .password(encoder.encode("123"))
                 .posts(postList)
                 .build());
 

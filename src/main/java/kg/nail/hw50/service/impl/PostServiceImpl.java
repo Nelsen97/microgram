@@ -1,4 +1,4 @@
-package kg.nail.hw50.service;
+package kg.nail.hw50.service.impl;
 
 import kg.nail.hw50.dto.PostDTO;
 import kg.nail.hw50.entity.User;
@@ -8,12 +8,10 @@ import kg.nail.hw50.exception.UserNotFoundException;
 import kg.nail.hw50.mapper.PostMapper;
 import kg.nail.hw50.repository.PostRepository;
 import kg.nail.hw50.repository.UserRepository;
-import kg.nail.hw50.service.impl.PostService;
+import kg.nail.hw50.service.PostService;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Optional;

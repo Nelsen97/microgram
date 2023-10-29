@@ -1,4 +1,4 @@
-package kg.nail.hw50.service;
+package kg.nail.hw50.service.impl;
 
 import kg.nail.hw50.dto.CommentDTO;
 import kg.nail.hw50.entity.Comment;
@@ -10,7 +10,7 @@ import kg.nail.hw50.exception.UserNotFoundException;
 import kg.nail.hw50.repository.CommentRepository;
 import kg.nail.hw50.repository.PostRepository;
 import kg.nail.hw50.repository.UserRepository;
-import kg.nail.hw50.service.impl.CommentService;
+import kg.nail.hw50.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

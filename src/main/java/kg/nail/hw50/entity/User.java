@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +20,9 @@ public class User {
     private String username;
     private String email;
     private String password;
+
+    @Builder.Default
+    private Boolean isEnabled = true;
 
     @OneToMany(mappedBy = "user")
     private List<Post> posts;

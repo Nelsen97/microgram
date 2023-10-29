@@ -1,11 +1,11 @@
-package kg.nail.hw50.service;
+package kg.nail.hw50.service.impl;
 
 import kg.nail.hw50.dto.UserDTO;
 import kg.nail.hw50.entity.User;
 import kg.nail.hw50.exception.UserNotFoundException;
 import kg.nail.hw50.mapper.UserMapper;
 import kg.nail.hw50.repository.UserRepository;
-import kg.nail.hw50.service.impl.UserService;
+import kg.nail.hw50.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,6 +17,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final UserRepository userRepository;
+
 
     @Override
     public Optional<UserDTO> findUserByEmail(String email) {

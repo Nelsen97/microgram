@@ -3,13 +3,12 @@ package kg.nail.hw50.controller;
 import kg.nail.hw50.dto.PostDTO;
 import kg.nail.hw50.exception.PostNotFoundException;
 import kg.nail.hw50.exception.UserNotFoundException;
-import kg.nail.hw50.service.impl.PostService;
+import kg.nail.hw50.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -20,7 +19,7 @@ import java.io.IOException;
 public class PostController {
     private final PostService postService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<String> createPost(
             @ModelAttribute PostDTO postDTO) {
         try {

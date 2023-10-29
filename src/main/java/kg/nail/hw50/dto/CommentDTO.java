@@ -1,8 +1,5 @@
 package kg.nail.hw50.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
