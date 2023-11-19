@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
+@EqualsAndHashCode
 public class User  {
 
     @Id
@@ -34,4 +35,7 @@ public class User  {
             inverseJoinColumns = @JoinColumn(name = "following_id")
     )
     private List<User> following;
+
+    @OneToMany(mappedBy = "user")
+    private List<Like> likes;
 }

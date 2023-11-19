@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,9 +15,8 @@ import java.time.LocalDateTime;
 public class PostDTO {
 
     Long id;
-    MultipartFile file;
+    List<MultipartFile> imageFiles;
     String description;
+    Long userId;
     LocalDateTime publicationTime = LocalDateTime.now();
-    UserDTO user;
-
 }

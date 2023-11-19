@@ -4,21 +4,30 @@ import kg.nail.hw50.dto.PostDTO;
 import kg.nail.hw50.entity.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 public class PostMapper {
 
-    private final UserMapper userMapper;
-
-    public Post toPostEntity(PostDTO postDTO) throws IOException {
+    public Post toPostEntity(PostDTO postDTO) {
         return Post.builder()
-                .image(postDTO.getFile().getBytes())
                 .description(postDTO.getDescription())
+                .images(postDTO.getImageFiles().stream()
+                        .map(MultipartFile::getOriginalFilename)
+                        .collect(Collectors.toList()))
                 .publicationTime(postDTO.getPublicationTime())
-                .user(userMapper.toUserEntity(postDTO.getUser()))
+                .build();
+    }
+
+    public PostDTO toPostDTO(Post post) {
+        return PostDTO.builder()
+                .id(post.getId())
+                .description(post.getDescription())
+                .publicationTime(post.getPublicationTime())
+                .userId(post.getUser().getId())
                 .build();
     }
 

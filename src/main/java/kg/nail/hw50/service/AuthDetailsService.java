@@ -1,9 +1,8 @@
 package kg.nail.hw50.service;
 
 import kg.nail.hw50.dto.UserDTO;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface AuthDetailsService extends UserDetailsService {
+public interface AuthDetailsService  {
 
     void registration(UserDTO userDTO);
 

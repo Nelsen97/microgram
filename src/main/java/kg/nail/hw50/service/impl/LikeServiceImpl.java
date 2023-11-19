@@ -1,18 +1,14 @@
 package kg.nail.hw50.service.impl;
 
-import kg.nail.hw50.dto.LikeDTO;
 import kg.nail.hw50.entity.Like;
 import kg.nail.hw50.entity.Post;
-import kg.nail.hw50.entity.User;
-import kg.nail.hw50.exception.LikeAlreadyExistException;
-import kg.nail.hw50.exception.LikeNotFoundException;
-import kg.nail.hw50.exception.PostNotFoundException;
-import kg.nail.hw50.exception.UserNotFoundException;
+import kg.nail.hw50.exception.CustomException;
 import kg.nail.hw50.repository.LikeRepository;
 import kg.nail.hw50.repository.PostRepository;
-import kg.nail.hw50.repository.UserRepository;
+import kg.nail.hw50.security.UserDetailsImpl;
 import kg.nail.hw50.service.LikeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -20,42 +16,29 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class LikeServiceImpl implements LikeService {
     private final PostRepository postRepository;
-    private final UserRepository userRepository;
     private final LikeRepository likeRepository;
 
     @Override
-    public void addLike(Long postId, LikeDTO likeDTO) {
-        Optional<Post> post = postRepository.findById(postId);
-        Optional<User> user = userRepository.findByEmail(likeDTO.getUser().getEmail());
-        if (post.isPresent()) {
-            if (user.isPresent()) {
-                if (!likeRepository.existsByUserAndPostLiked(user.get(), post.get())) {
-                    likeRepository.save(Like.builder()
-                            .postLiked(post.get())
-                            .user(user.get())
-                            .build());
-                } else {
-                    throw new LikeAlreadyExistException(
-                            String.format("Лайк под постом id = %s уже был поставлен пользователем id = %s",
-                                    post.get().getId(), user.get().getId()), HttpStatus.BAD_REQUEST);
-                }
-            } else {
-                throw new UserNotFoundException("Такого пользователя не существует!", HttpStatus.NOT_FOUND);
-            }
-        } else {
-            throw new PostNotFoundException("Такого поста не существует", HttpStatus.NOT_FOUND);
-        }
-    }
+    public Long addLike(Long postId, UserDetailsImpl user) throws CustomException {
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new CustomException("Нет такого поста!", HttpStatus.NOT_FOUND)
+        );
 
-    @Override
-    public void deleteLike(Long id) {
-        if (likeRepository.existsById(id)) {
-            likeRepository.deleteById(id);
+        Optional<Like> likedPost = likeRepository.findByUserAndPost(user.getUser(), post);
+
+        if (likedPost.isEmpty()) {
+            Like like = likeRepository.save(
+                    Like.builder()
+                            .post(post)
+                            .user(user.getUser())
+                            .build());
+            log.info("Пользователь - %s поставил лайк посту - %s".formatted(user.getUser().getUsername(), post.getId()));
+            return like.getId();
         } else {
-            throw new LikeNotFoundException("Пользователь еще не ставил лайка под этим постом!",
-                    HttpStatus.BAD_REQUEST);
+            throw new CustomException("Вы уже ставили лайк под этим постом", HttpStatus.BAD_REQUEST);
         }
     }
 }

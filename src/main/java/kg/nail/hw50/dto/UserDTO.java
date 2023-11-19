@@ -3,10 +3,7 @@ package kg.nail.hw50.dto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -16,7 +13,5 @@ public class UserDTO {
     Long id;
     String username;
     String email;
-
-
-
+    String password;
 }

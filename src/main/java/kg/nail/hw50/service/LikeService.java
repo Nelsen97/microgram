@@ -1,8 +1,7 @@
 package kg.nail.hw50.service;
 
-import kg.nail.hw50.dto.LikeDTO;
+import kg.nail.hw50.security.UserDetailsImpl;
 
 public interface LikeService {
-    void addLike(Long postId, LikeDTO likeDTO);
-    void deleteLike(Long id);
+    Long addLike(Long postId, UserDetailsImpl user);
 }

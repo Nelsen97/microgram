@@ -3,8 +3,6 @@ package kg.nail.hw50.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @Builder
@@ -22,7 +20,7 @@ public class Like {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "post_id")
-    private Post postLiked;
+    private Post post;
 }

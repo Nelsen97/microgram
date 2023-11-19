@@ -16,6 +16,4 @@ public class CommentDTO {
     Long id;
     String commentaryText;
     LocalDateTime commentaryTime;
-    UserDTO userDTO;
-//    PostDTO postDTO;
 }
